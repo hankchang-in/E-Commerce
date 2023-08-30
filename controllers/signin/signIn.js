@@ -3,6 +3,7 @@ const passport = require('../../auth/passport')
 
 
 module.exports.getSignIn = (req,res,next)=>{
+    // if(req.user) return res.render('profile')
     res.render('login' ,{
         message : req.flash('message')
     })

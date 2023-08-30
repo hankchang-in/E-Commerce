@@ -10,7 +10,8 @@ const session = require("express-session");
 const passport = require('./auth/passport');
 var flash = require("connect-flash");
 const multer  = require('multer')
-
+const isLoggedIn = require('./middlewares/isLoggedIn')
+const loginPass = require('./middlewares/logginPass')
 require("dotenv").config();
 
 
@@ -54,15 +55,29 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+//Creating Logout function using passport
+
+app.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('login');
+  });
+});
+
+
 //Creating all path and routes for application
 app.get('/' , (req,res)=>{
-  res.render('login')
+  if(req.user) return res.redirect('profile')
+  return  res.redirect('login')
 })
-app.use("/login", require("./routes/login"));
-app.use("/signup", require("./routes/singup"));
+app.use("/login", loginPass, require("./routes/login"));
 
-app.use('/admin' , require('./routes/admin'))
-app.use('/shop' , require('./routes/shop'))
+app.use("/signup", loginPass ,require("./routes/singup"));
+
+app.use('/admin' , isLoggedIn , require('./routes/admin'))
+
+app.use('/shop' , isLoggedIn , require('./routes/shop'))
 
 
 //Connecting to mongoose and starting the server

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/login.css">
+  <title>Login Page</title>
 </head>
 <body>
-
     <div class="message">{{message}}</div>
-    <h1>Login Page</h1>
-    <form action="/login" class="loginLocal" method="POST">
-    <input type="text" name="username" placeholder="username" id="username"> <br>
-    <input type="text" name="password" placeholder="password" id="password"> <br>
-    <button type="submit">Login</button>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form class="login-form" action="/login" method="POST">
+      <input type="text" placeholder="Username" name="username" required>
+      <input type="password" placeholder="Password" name="password" required>
+      <button type="submit">Login</button>
     </form>
-
+    <p>Don't have an account? <a href="/signup">Create account?</a></p>
+  </div>
 </body>
 </html>

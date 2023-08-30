@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/signup.css">
+  <title>Signup Page</title>
 </head>
 <body>
     <div class="message">{{message}}</div>
-    <h1>Signup Page</h1>
-    <form action="/signup" class="loginLocal" method="POST">
-    <input type="text" name="username" placeholder="username" > <br>
-    <input type="text" name="password" placeholder="password" > <br>
-    <button type="submit">Signup</button>
+  <div class="signup-container">
+    <h2>Sign Up</h2>
+    <form class="signup-form" action="/signup" method="POST">
+      <input type="email" placeholder="Email" name="email" required>
+      <input type="password" placeholder="Password" name="password" required>
+      <button type="submit">Sign Up</button>
     </form>
-
+    <p>Already have an account? <a href="/login">Login here</a></p>
+  </div>
 </body>
 </html>
